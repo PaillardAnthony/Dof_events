@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   client_id: '853620257620099072',
-  redirect_url: 'http://localhost:4200/test'
+  redirect_url: 'http://localhost:4200/test',
+  discord_api: 'https://discord.com/api/v8'
 };
 
 

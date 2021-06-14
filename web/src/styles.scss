@@ -2,6 +2,7 @@
 
 body {
  background: url('./assets/img/background.jpg') no-repeat top fixed;
+ background-size: cover
 };
 html, body { 
     height: 100%;
@@ -27,4 +28,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
   }
 
+  .mat-drawer-container {
+    height: 100%;
+    background: none!important;
+    color: seashell;
+
+    .side-nav {
+        width: 300px;
+    }
+    table.mat-table {
+        width: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.1);
+        .mat-cell {
+            color: white;
+            border-bottom: white 1px solid;
+        }
+    }
+  }
 

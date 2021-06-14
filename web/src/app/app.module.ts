@@ -1,4 +1,5 @@
-import { RouterModule } from '@angular/router';
+
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,10 +11,17 @@ import { MatInputModule, } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { TestComponent } from './Tests/test/test.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatRippleModule } from '@angular/material/core';
+import  DiscordOauth2 from 'discord-oauth2';
+import { AuthInterceptor } from './interceptors/AuthInterceptor';
+import { ErrorInterceptor } from './interceptors/ErrorInterceptor';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -31,13 +39,20 @@ import { MatRippleModule } from '@angular/material/core';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    OAuthModule,
     HttpClientModule,
     RouterModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule
     
   ],
-  providers: [],
+  providers: [    
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    //{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
