@@ -22,12 +22,16 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { IconsPipe } from './pipes/icons.pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
-    TestComponent
+    TestComponent,
+    IconsPipe
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatDividerModule,
     MatListModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxSpinnerModule,
+    MatDividerModule,
+    MatBadgeModule
     
   ],
   providers: [    

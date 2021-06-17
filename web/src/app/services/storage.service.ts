@@ -12,11 +12,20 @@ export class StorageService {
     window.sessionStorage.setItem('token', token)
   }
 
-  getToken() {
+  setUserName(userName:string) :void
+  {
+    window.sessionStorage.setItem('userName', userName)
+  }
+
+  getToken(): string | null {
     return window.sessionStorage.getItem('token');
   }
 
-  hasToken() {
+  getUserName(): string | null {
+    return window.sessionStorage.getItem('userName');
+  }
+
+  hasToken(): boolean {
     return window.sessionStorage.getItem('token') != null;
   }
 

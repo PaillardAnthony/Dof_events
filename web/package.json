@@ -21,7 +21,9 @@
     "@angular/platform-browser-dynamic": "~12.0.4",
     "@angular/router": "~12.0.4",
     "angular-oauth2-oidc": "^10.0.3",
+    "axios": "^0.21.1",
     "discord-oauth2": "^2.6.0",
+    "ngx-spinner": "^12.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

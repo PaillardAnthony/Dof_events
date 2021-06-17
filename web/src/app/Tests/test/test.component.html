@@ -1,35 +1,52 @@
 <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened class="side-nav">
         <mat-list>
-            <mat-list-item matRipple>Liste des Evènements</mat-list-item>
+            <mat-list-item matRipple><p matBadge="4" matBadgeOverlap="false" class="noselect">Liste des Evènements </p></mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item matRipple>Creer un evenement</mat-list-item>
+            <mat-list-item matRipple class="noselect">Creer un evenement</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item matRipple>Modifier un Evenement</mat-list-item>
+            <mat-list-item matRipple class="noselect">Modifier un Evenement</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item matRipple>Annuler un Evenement</mat-list-item>
+            <mat-list-item matRipple class="noselect">Annuler un Evenement</mat-list-item>
           </mat-list>
+          <mat-divider></mat-divider>
+          <div id="welcome">Bienvenue {{ storage.getUserName() }} </div>
     </mat-drawer>
     <mat-drawer-content>
         <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource">
+            <ng-container *ngIf="server$ | async as server; else noDataTemplate">
+              <table mat-table [dataSource]="server" class="servers-list">
           
-              <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-              </ng-container>
-          
-              <!-- Weight Column -->
-              <ng-container matColumnDef="owner">
-                <th mat-header-cell *matHeaderCellDef> Owner </th>
-                <td mat-cell *matCellDef="let element"> {{element.owner}} </td>
-              </ng-container>
-          
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+                <!-- img  -->
+                <ng-container matColumnDef="icons">
+                  <th mat-header-cell *matHeaderCellDef>Icons</th>
+                  <td mat-cell *matCellDef="let element">  <img [src]="element.icon | icons:element">  </td>
+                </ng-container>
+  
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell *matCellDef="let element">   {{element.name}}  </td>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="owner">
+                  <th mat-header-cell *matHeaderCellDef> Owner</th>
+                  <td mat-cell *matCellDef="let element">  {{element.owner}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </ng-container>
         </div>
-
+      <ng-template #noDataTemplate><ngx-spinner
+        bdColor="rgba(0,0,0,0.8)"
+        size="large"
+        color="#fff"
+        type="ball-clip-rotate-multiple"
+      >
+        <p style="font-size: 20px; color: white; display: block; text-align: center;">Loading...</p>
+      </ngx-spinner></ng-template>
     </mat-drawer-content>
 </mat-drawer-container>
